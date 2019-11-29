@@ -5,7 +5,12 @@
 >
 > <cite><a href="https://www.mechon-mamre.org/p/pt/pt2740.htm#15">Job 40:25</a></cite>
 
-Sometimes you want work computers to be a sea monster, not cattle. Leviathan is the name of my workstation, it runs a couple guest operating systems for development purposes.
+Sometimes you want work computers to be sea monsters, not cattle.
+
+## Motivation
+I routinely work on cross-platform hosted, desktop phone, and tablet apps and games. One hard part is debugging and testing software on a number of platforms. While my Macbook Pro can sort of run Windows and previous versions of MacOS; the development and debugging experience left much to be desired.
+
+I built Leviathan so I could have a powerful machine for building, debugging and running computationally intensive software without relying heavily on AWS or other cloud infrastructure vendors.
 
 ## Configuration
 ### Software
