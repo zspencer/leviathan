@@ -1,0 +1,18 @@
+---
+- hosts: all
+  remote_user: root
+  tasks:
+    - name: "Install Jacob Zimmerman's PPA for qemu and libvirt"
+      apt_repository:
+        repo: ppa:jacob/virtualisation
+        state: present
+    - name: "install qemu, etc."
+      package:
+        name:
+          - libvirt-bin
+          - bridge-utils
+          - virt-manager
+          - qemu-kvm
+          - qemu
+          - ovmf
+        state: latest
