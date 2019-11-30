@@ -1,0 +1,8 @@
+---
+- hosts: all
+  remote_user: root
+  tasks:
+  - name: "Upgrade all packages"
+    apt:
+      upgrade: full
+      update_cache: yes
