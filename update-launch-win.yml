@@ -1,0 +1,9 @@
+---
+- hosts: all
+  remote_user: zee
+  tasks:
+  - name: "Copy the launch-win script to the host"
+    copy:
+      src: launch-win
+      dest: ~/launch-win
+      mode: '0755'
