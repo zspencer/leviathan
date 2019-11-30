@@ -1,0 +1,21 @@
+---
+- hosts: all
+  remote_user: root
+  tasks:
+    - name: "Check to see if IOMMU is enabled"
+      shell: dmesg | grep "IOMMU enabled"
+      register: iommu_check
+      failed_when: iommu_check.rc == 2
+      # GREP's return code is 1 when it cannot find any entries
+    - name: "Enable IOMMU in grub"
+      lineinfile:
+        regexp: ^GRUB_CMDLINE_LINUX_DEFAULT
+        line: 'GRUB_CMDLINE_LINUX_DEFAULT="intel_iommu=on"'
+        path: /etc/default/grub
+      when: iommu_check.rc == 1
+    - name: "Update grub"
+      command: update-grub
+      when: iommu_check.rc == 1
+    - name: "reboot!"
+      reboot:
+      when: iommu_check.rc == 1
