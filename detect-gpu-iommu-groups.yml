@@ -1,0 +1,9 @@
+---
+- hosts: all
+  remote_user: root
+  tasks:
+  - name: Run a script with arguments (free form)
+    script: bin/identify-iommu-groups | grep AMD\/ATI
+    register: iommu_groups
+  - debug: var=iommu_groups.stdout_lines
+  - debug: "var=iommu_groups.stdout_lines"
