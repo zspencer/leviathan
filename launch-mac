@@ -23,7 +23,8 @@ qemu-system-x86_64 -enable-kvm -m 48G \
 	-device usb-host,vendorid=0xc0f3,productid=0x02a1 \
 	-device usb-host,vendorid=0x1b1c,productid=0x1b50 \
 	-device usb-host,vendorid=0x046d,productid=0xc539 \
-	-netdev user,id=net0 -device vmxnet3,netdev=net0,id=net0,mac=52:54:00:c9:18:27 \
+	-netdev tap,id=net0 \
+	-device vmxnet3,netdev=net0,mac=52:54:00:c9:18:27 \
 	-rtc clock=host,base=localtime \
 	-vga none \
 	-nographic
