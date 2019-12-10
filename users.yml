@@ -6,6 +6,7 @@
     user:
       name: zee
       comment: Zee Spencer
+      shell: /bin/bash
       groups: sudo
   - name: Set my users authorized keys from Github
     authorized_key:
