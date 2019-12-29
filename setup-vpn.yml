@@ -1,0 +1,43 @@
+---
+  - hosts: workstation-host
+    remote_user: root
+    tasks:
+    - name: "Install open vpn"
+      package:
+        name:
+          - openvpn
+        state: latest
+    - name: "Install server key"
+      copy:
+        src: secrets/server.key
+        dest: /etc/openvpn/server.key
+
+    - name: "install signed cert"
+      copy:
+        src: secrets/server.crt
+        dest: /etc/openvpn/server.crt
+    - name: "install Diffie Hellman key"
+      copy:
+        src: secrets/dh.pem
+        dest: /etc/openvpn/dh.pem
+
+    - name: "Install the ta.key"
+      copy:
+        src: secrets/ta.key
+        dest: /etc/openvpn/ta.key
+
+    - name: "Install the ca cert"
+      copy:
+        src: secrets/ca.crt
+        dest: /etc/openvpn/ca.crt
+
+    - name: "Install the config"
+      copy:
+        src: vpn-server.conf
+        dest: /etc/openvpn/server.conf
+
+    - name: "Enable and restart openVPN"
+      systemd:
+        name: openvpn@server
+        state: restarted
+        enabled: yes
