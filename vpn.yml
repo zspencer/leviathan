@@ -31,13 +31,24 @@
         src: secrets/ca.crt
         dest: /etc/openvpn/ca.crt
 
-    - name: "Install the config"
+    - name: "Install the tap config"
       copy:
-        src: vpn-server.conf
-        dest: /etc/openvpn/server.conf
+        src: vpn/server-tap.conf
+        dest: /etc/openvpn/server-tap.conf
 
     - name: "Enable and restart openVPN"
       systemd:
-        name: openvpn@server
+        name: openvpn@server-tap
+        state: restarted
+        enabled: yes
+
+    - name: "Install the tun config"
+      copy:
+        src: vpn/server-tun.conf
+        dest: /etc/openvpn/server-tun.conf
+
+    - name: "Enable and restart openVPN"
+      systemd:
+        name: openvpn@server-tun
         state: restarted
         enabled: yes
