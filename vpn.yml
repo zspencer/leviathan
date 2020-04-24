@@ -39,8 +39,8 @@
     - name: "Enable and restart openVPN"
       systemd:
         name: openvpn@server-tap
-        state: restarted
-        enabled: yes
+        state: stopped
+        enabled: no
 
     - name: "Install the tun config"
       copy:
