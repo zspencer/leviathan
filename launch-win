@@ -1,32 +1,34 @@
 #!/bin/bash
-
 vmname="windows10"
 if ps -ef | grep qemu-system-x86_64 | grep -q multifunction=on; then
   echo "Passthrough already running" & exit 1
 else
   cp /usr/share/OVMF/OVMF_VARS.fd /tmp/my_ovmf_vars.fd
   qemu-system-x86_64 \
-  -name $vmname,process=$vmname \
-  -machine type=pc,accel=kvm \
-  -cpu host \
-  -smp 12,sockets=1,cores=6,threads=2 \
-  -m 48G \
-  -rtc clock=host,base=localtime \
-  -vga none \
-  -nographic \
-  -serial none \
-  -parallel none \
-  -usb \
-  -device usb-host,vendorid=0xc0f3,productid=0x02a1 \
-  -device usb-host,vendorid=0x1b1c,productid=0x1b50 \
-  -device usb-host,vendorid=0x046d,productid=0xc539 \
-  -device vfio-pci,host=01:00.0,multifunction=on \
-  -device vfio-pci,host=01:00.1 \
-  -drive if=pflash,format=raw,readonly,file=/usr/share/OVMF/OVMF_CODE.fd \
-  -drive if=pflash,format=raw,readonly,file=/tmp/my_ovmf_vars.fd \
-  -boot order=c \
-  -drive id=disk0,if=virtio,cache=none,format=raw,file=/home/zee/disks/win.img
-  exit 0
+	  -name $vmname,process=$vmname \
+	  -machine type=pc,accel=kvm \
+	  -cpu host \
+	  -smp 12,sockets=1,cores=6,threads=2 \
+	  -m 48G \
+	  -serial none \
+	  -parallel none \
+	  -drive if=pflash,format=raw,readonly,file=/usr/share/OVMF/OVMF_CODE.fd \
+	  -drive if=pflash,format=raw,readonly,file=/tmp/my_ovmf_vars.fd \
+	  -device vfio-pci,host=01:00.0,multifunction=on \
+	  -device vfio-pci,host=01:00.1 \
+	  -usb \
+	  -device usb-host,vendorid=0xc0f3,productid=0x02a1 \
+	  -device usb-host,vendorid=0x1b1c,productid=0x1b50 \
+	  -device usb-host,vendorid=0x046d,productid=0xc539 \
+	  -boot order=c \
+	  -drive id=disk0,if=virtio,cache=none,format=raw,file=/home/zee/disks/win.img \
+	  -object iothread,id=io1 \
+	  -device virtio-blk-pci,drive=disk1,iothread=io1 \
+	  -drive if=none,id=disk1,cache=none,format=raw,aio=threads,file=/home/zee/disks/shared.img \
+	  -nic tap \
+	  -rtc clock=host,base=localtime \
+	  -vga none \
+	  -nographic
 fi
 
   # Installation media
