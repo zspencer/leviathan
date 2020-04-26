@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: workstation-host
   remote_user: zee
   tasks:
   - name: "Copy the launch-win script to the host"
@@ -9,6 +9,12 @@
       mode: '0755'
   - name: "Copy the launch-mac script to the host"
     copy:
-      src: launch-win
-      dest: ~/launch-win
+      src: launch-mac
+      dest: ~/launch-mac
+      mode: '0755'
+
+  - name: "Copy the launch-obs script to the host"
+    copy:
+      src: launch-obs
+      dest: ~/launch-obs
       mode: '0755'

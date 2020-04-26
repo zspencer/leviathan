@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# Heavily inspired by:
+#   https://github.com/cirosantilli/linux-cheat/blob/4c8ee243e0121f9bbd37f0ab85294d74fb6f3aec/ubuntu-18.04.1-desktop-amd64.sh
+
+
+set -eux
+
+# Parameters.
+vmname="obs"
+os=ubuntu-20.04-desktop-amd64
+disk_img="disks/${vmname}.img.qcow2"
+disk_img_snapshot="disks/${vmname}.snapshot.qcow2"
+iso_name="${os}.iso"
+iso="disks/${iso_name}"
+
+# Download the installation media
+if [ ! -f "$iso" ]; then
+  wget "http://releases.ubuntu.com/focal/${iso_name}" -P "disks"
+fi
+
+# Provision a disk
+if [ ! -f "$disk_img" ]; then
+  qemu-img create -f qcow2 "$disk_img" 512G
+fi
+
+MY_OPTIONS="+pcid,+ssse3,+sse4.2,+popcnt,+avx,+aes,+xsave,+xsaveopt,check"
+# Run + Snapshot
+qemu-system-x86_64 \
+  -cpu Penryn,kvm=on,vendor=GenuineIntel,+invtsc,vmware-cpuid-freq=on,$MY_OPTIONS \
+  -machine q35 \
+  -smp 8,sockets=1,cores=4,threads=2\
+  -drive "file=${disk_img},format=qcow2" \
+  -enable-kvm \
+  -m 4G \
+  -nic tap \
+  -nographic \
+  -vnc :2 \
