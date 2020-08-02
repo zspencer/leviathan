@@ -1,6 +1,6 @@
 ---
-- hosts: all
-  remote_user: root
+- hosts: workstation-host
+  become: yes
   tasks:
   - name: Run a script with arguments (free form)
     script: bin/identify-iommu-groups | grep AMD\/ATI

@@ -14,7 +14,7 @@ I built Leviathan so I could have a powerful machine for building, debugging and
 
 ## Configuration
 ### Software
-- Host OS: [Ubuntu 18.04.3 LTS](http://releases.ubuntu.com/18.04/)
+- Host OS: [Ubuntu 20.04.1 LTS](http://releases.ubuntu.com/20.04/)
 - Hypervisor: [QEMU 2.11](https://github.com/qemu/qemu/tree/stable-2.12)
 - Configuration Management: [Ansible 2.9](https://docs.ansible.com/ansible/2.9/index.html)
 - Guest OS: [Mac OS X Catalina](https://www.apple.com/macos/catalina/)

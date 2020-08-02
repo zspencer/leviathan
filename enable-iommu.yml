@@ -1,6 +1,6 @@
 ---
-- hosts: all
-  remote_user: root
+- hosts: workstation-host
+  become: yes
   tasks:
     - name: "Check to see if IOMMU is enabled"
       shell: dmesg | grep "IOMMU enabled"

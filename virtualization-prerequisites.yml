@@ -1,6 +1,6 @@
 ---
-- hosts: all
-  remote_user: root
+- hosts: workstation-host
+  become: yes
   tasks:
     - name: "Install Jacob Zimmerman's PPA for qemu and libvirt"
       apt_repository:
@@ -9,7 +9,7 @@
     - name: "install qemu, etc."
       package:
         name:
-          - libvirt-bin
+          - libvirt-clients
           - bridge-utils
           - virt-manager
           - qemu-kvm

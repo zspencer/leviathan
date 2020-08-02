@@ -1,6 +1,6 @@
 ---
 - hosts: all
-  remote_user: root
+  become: yes
   tasks:
   - name: Create my user
     user:
@@ -11,12 +11,6 @@
   - name: Set my users authorized keys from Github
     authorized_key:
       user: zee
-      state: present
-      exclusive: true
-      key: https://github.com/zspencer.keys
-  - name: Set roots authorized keys from my Github
-    authorized_key:
-      user: root
       state: present
       exclusive: true
       key: https://github.com/zspencer.keys
