@@ -1,5 +1,5 @@
 ---
-- hosts: workstation-host
+- hosts: workstation_hosts
   become: yes
   tasks:
   - name: Run a script with arguments (free form)

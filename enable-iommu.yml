@@ -1,5 +1,5 @@
 ---
-- hosts: workstation-host
+- hosts: workstation_hosts
   become: yes
   tasks:
     - name: "Check to see if IOMMU is enabled"

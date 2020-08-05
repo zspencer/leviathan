@@ -1,7 +1,11 @@
-[workstation-host]
+[workstation_hosts]
 leviathan.local
-[workstation-guest]
+
+[workstation_guests]
 leviathan.mac.local
+leviathan.tl.local
+leviathan.tc.local
+leviathan.zc.local
 
 [bridge]
 prime.zeespencer.com
