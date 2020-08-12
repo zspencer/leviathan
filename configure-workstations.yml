@@ -22,8 +22,14 @@
           - python3-psutil
           - tmux
           - htop
+          # Provides a remote desktop connection for workstation guests
           - xrdp
           - git
+          - make
+          # https://serverfault.com/questions/214605/gpg-does-not-have-enough-entropy
+          # Used for generating entropy when using gpg
+          # $ sudo rngd -r /dev/urandom
+          - rng-tools
 
     - name: Set my users authorized keys from Github
       authorized_key:
