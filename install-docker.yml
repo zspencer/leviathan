@@ -66,3 +66,15 @@
         path: ~/.bashrc
         line: export DOCKER_HOST=tcp://192.168.42.82:2375
         state: present
+    - name: "Download docker-compose binary"
+      become: yes
+      get_url:
+        mode: 0755
+        dest: /usr/local/bin/docker-compose
+        url: https://github.com/docker/compose/releases/download/1.26.2/docker-compose-Linux-x86_64
+    - name: "Install docker-compose command completion"
+      become: yes
+      get_url:
+        mode: 0755
+        dest: /etc/bash_completion.d/docker-compose
+        url:  https://raw.githubusercontent.com/docker/compose/1.26.2/contrib/completion/bash/docker-compose
