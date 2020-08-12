@@ -3,3 +3,4 @@
   - hosts: workstation_hosts
     tasks:
     - include: install-sga-guard.yml
+    - include: push-launch-scripts.yml

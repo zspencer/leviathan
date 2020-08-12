@@ -1,26 +1,23 @@
 ---
-- hosts: workstation_hosts
-  remote_user: zee
-  tasks:
-  - name: "Copy the launch-win script to the host"
-    copy:
-      src: launch-win
-      dest: ~/launch-win
-      mode: '0755'
-  - name: "Copy the launch-mac script to the host"
-    copy:
-      src: launch-mac
-      dest: ~/launch-mac
-      mode: '0755'
+- name: "Copy the launch-win script to the host"
+  copy:
+    src: launch-win
+    dest: ~/launch-win
+    mode: '0755'
+- name: "Copy the launch-mac script to the host"
+  copy:
+    src: launch-mac
+    dest: ~/launch-mac
+    mode: '0755'
 
-  - name: "Copy the launch-obs script to the host"
-    copy:
-      src: launch-obs
-      dest: ~/launch-obs
-      mode: '0755'
+- name: "Copy the launch-obs script to the host"
+  copy:
+    src: launch-obs
+    dest: ~/launch-obs
+    mode: '0755'
 
-  - name: "Copy the launch-workstation script to the host"
-    copy:
-      src: launch-workstation
-      dest: ~/launch-workstation
-      mode: '0755'
+- name: "Copy the launch-workstation script to the host"
+  copy:
+    src: launch-workstation
+    dest: ~/launch-workstation
+    mode: '0755'
