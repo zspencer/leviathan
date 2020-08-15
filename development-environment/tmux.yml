@@ -1,0 +1,12 @@
+---
+# [tmux] allows us to split a terminal into multiple windows and panes, run
+# processes, disconnect from the server, and reconnect. It is a powerful tool
+# for terminal based or terminal-related development environments.
+#
+# [tmux]: https://github.com/tmux/tmux#readme
+
+- name: "Install tmux"
+  become: yes
+  package:
+    name: tmux
+

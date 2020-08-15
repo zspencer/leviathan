@@ -20,7 +20,6 @@
         name:
           - curl
           - python3-psutil
-          - tmux
           - htop
           # Provides a remote desktop connection for workstation guests
           - make
