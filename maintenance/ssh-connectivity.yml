@@ -1,20 +1,32 @@
 ---
-# Exposing SSH connectivity grants access to the system so long as there is a
-# user configured on the system with a public key in their
-# ~/.ssh/authorized_keys file.
-- name: "Install baseline ssh packages"
+# Secure SHell (SSH) provides people access to the machine so long as the
+# person attempting to access the machine has a user on the machine configured
+# with their password or public key.
+#
+# The [openssh-server] package allows [incoming ssh connections], while
+# [openssh-client] provides tools for making [outgoing ssh connections].
+#
+# [openssh-server]: https://man.openbsd.org/sshd
+# [openssh-client]: https://man.openbsd.org/ssh
+# [outgoing ssh connections]: https://www.ssh.com/ssh/client
+# [incoming ssh connections]: https://www.ssh.com/ssh/server
+- name: "Install ssh packages"
   become: yes
   package:
     name:
     - openssh-server
     - openssh-client
 
-# I'm not entirely sure that the machine will not allow ssh through by default,
-# so explicitely granting permissions seems prudent.
+# In cases where there is a Universal Firewall (UFW) we open a port so
+# incoming SSH connections can talk with the [openssh-server], which is also
+# known as sshd.
+#
+# By default, sshd listens for incoming connections on [port 22].
+#
+# [port 22]: https://www.ssh.com/ssh/port
 - name: "Allow SSH through the firewall"
   become: yes
   ufw:
     rule: allow
     port: "22"
-
 

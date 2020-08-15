@@ -3,7 +3,7 @@
   - hosts: workstation_hosts
     tasks:
     - include: maintenance/upgrade.yml
-    - include: maintenance/ssh-connectivity.yml
+    - include: maintenance/remote-management.yml
     - include: maintenance/performance-monitoring.yml
     - include: development-environment/terminal.yml
     - include: push-launch-scripts.yml

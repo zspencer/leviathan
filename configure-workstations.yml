@@ -10,7 +10,7 @@
 
     tasks:
     - include: maintenance/upgrade.yml
-    - include: maintenance/ssh-connectivity.yml
+    - include: maintenance/remote-management.yml
     - include: maintenance/performance-monitoring.yml
     - include: development-environment/terminal.yml
     - include: development-environment/desktop.yml
@@ -20,7 +20,6 @@
       package:
         name:
           - curl
-          - python3-psutil
           - make
           # https://serverfault.com/questions/214605/gpg-does-not-have-enough-entropy
           # Used for generating entropy when using gpg
