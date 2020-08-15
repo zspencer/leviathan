@@ -1,0 +1,34 @@
+---
+
+# We use xdrp to provide access to a workstation using the Remote Desktop
+# Protocol (RDP) There are a number of RDP clients, the one I use primarily is
+# [Jump Desktop], as it supports both of my primary devices: Mac and iPad.
+#
+# This was extracted from the [Linuxize Tutorial for installing Xrdp on Ubuntu]
+#
+# [Jump Desktop]: https://jumpdesktop.com
+# [Linuxize Tutorial for installing Xrdp on Ubuntu]: https://linuxize.com/post/how-to-install-xrdp-on-ubuntu-20-04/
+- name: "install Xrdp"
+  become: yes
+  package:
+    name:
+    - xrdp
+
+# Xrdp uses a SSL certificate to provide confidence that clients are connecting
+# to the machine they think they are. By default, the ceritficates are stored
+# in `/etc/ssl/private/`, and are only accessible to members of the `ssl-cert`
+# group.
+- name: "Ensure xrdp can access the ssh key"
+  become: yes
+  user:
+    name: xrdp
+    append: yes
+    groups:
+      - 'ssl-cert'
+
+# We punch a hole through the firewall so folks can access the machine.
+- name: "Allow RDP through the firewall"
+  become: yes
+  ufw:
+    rule: allow
+    port: "3389"

@@ -11,6 +11,8 @@
     tasks:
     - include: maintenance/upgrade.yml
     - include: maintenance/ssh-connectivity.yml
+    - include: development-environment/terminal.yml
+    - include: development-environment/desktop.yml
     - include: configure-git.yml
     - include: docker/install-docker.yml
     - name: "install common packages"
@@ -22,7 +24,6 @@
           - tmux
           - htop
           # Provides a remote desktop connection for workstation guests
-          - xrdp
           - make
           # https://serverfault.com/questions/214605/gpg-does-not-have-enough-entropy
           # Used for generating entropy when using gpg
