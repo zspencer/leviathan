@@ -1,0 +1,52 @@
+#!/bin/bash
+
+# Heavily inspired by:
+#   https://github.com/cirosantilli/linux-cheat/blob/4c8ee243e0121f9bbd37f0ab85294d74fb6f3aec/ubuntu-18.04.1-desktop-amd64.sh
+
+
+set -eux
+
+NAME="zc"
+
+for i in "$@"
+do
+case $i in
+    --name=*)
+    NAME="${i#*=}"
+    shift
+    ;;
+esac
+done
+
+
+
+
+# Parameters.
+vmname="$NAME-workstation"
+disk_img="disks/${vmname}.img.qcow2"
+disk_img_snapshot="disks/${vmname}.snapshot.qcow2"
+os=ubuntu-20.04-desktop-amd64
+iso_name="${os}.iso"
+iso="disks/${iso_name}"
+
+# Download installation media
+if [ ! -f "$disk_img" ]; then
+  wget "http://releases.ubuntu.com/focal/${iso_name}" -P "disks"
+fi
+
+
+# Provision a disk
+if [ ! -f "$disk_img" ]; then
+  qemu-img create -f qcow2 "$disk_img" 48G
+fi
+
+# Run + Snapshot
+qemu-system-x86_64 \
+  -cpu  host \
+  -machine q35 \
+  -smp 8,sockets=1,cores=4,threads=2\
+  -drive "file=${disk_img},format=qcow2" \
+  -enable-kvm \
+  -m 16G \
+  -nic user,hostfwd=tcp::5555-:22 \
+  -vnc :2 \
