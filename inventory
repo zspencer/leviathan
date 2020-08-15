@@ -2,10 +2,7 @@
 leviathan.local
 
 [workstation_guests]
-leviathan.mac.local
-leviathan.tl.local
-leviathan.tc.local
-leviathan.zc.local
+leviathan.guest.local:5555
 
 [bridge]
 prime.zeespencer.com
