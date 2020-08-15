@@ -4,3 +4,4 @@
     tasks:
     - include: install-sga-guard.yml
     - include: push-launch-scripts.yml
+    - include: configure-git.yml

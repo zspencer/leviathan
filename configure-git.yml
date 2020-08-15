@@ -1,0 +1,13 @@
+---
+- name: "install git and vim"
+  become: yes
+  package:
+    name:
+      - git
+      - vim
+- name: "configure vim as gits editor"
+  git_config:
+    name: core.editor
+    scope: global
+    value: vim
+
