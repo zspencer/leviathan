@@ -18,36 +18,3 @@
     port: "22"
 
 
-# We use SGA Guard to allow forwarding of SSH keys from a client device to a
-# workstation, so as to reduce the risk of an SSH key being exposed
-# inadvertently.
-#
-# SGA Guard is _not_ guaranteed secure, but it feels better than leaving an
-# `id_rsa` on a (ostensibly) shared virtual machine
-
-- name: "Check if SGA Guard is installed"
-  stat:
-    path: /usr/local/bin/sga-guard
-  register: sga_guard_bin
-
-- name: "Install prerequeisites for SGA Guard" 
-  when: sga_guard_bin.stat.exists == false
-  become: yes
-  package:
-    name:
-    - openssh-client 
-    - autossh 
-    - ssh-askpass
-
-- name: "Install SGA Guard"
-  when: sga_guard_bin.stat.exists == false
-  become: yes
-  script: bin/install-sga-guard
-
-- name: "Use SGA Guard by default when SSH/Git"
-  when: sga_guard_bin.stat.exists == false
-  lineinfile:
-    path: ~/.bashrc
-    line: source sga-env.sh
-    state: present
-

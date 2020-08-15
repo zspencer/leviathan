@@ -1,3 +1,4 @@
 ---
 - include: remote-desktop.yml
 - include: git.yml
+- include: sga-guard.yml
