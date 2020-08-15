@@ -10,6 +10,7 @@
 
     tasks:
     - include: configure-git.yml
+    - include: docker/install-docker.yml
     - include: install-sga-guard.yml
     - name: "install common packages"
       become: yes

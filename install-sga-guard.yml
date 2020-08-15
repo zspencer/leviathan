@@ -1,20 +1,22 @@
 ---
+- name: "Check if SGA Guard is installed"
+  stat:
+    path: /usr/local/bin/sga-guard
+  register: sga_guard_bin
 - name: "Install prerequeisites for SGA Guard" 
+  when: sga_guard_bin.stat.exists == false
   become: yes
   package:
     name:
     - openssh-client 
     - autossh 
     - ssh-askpass
-- name: "Check if SGA Guard is installed"
-  stat:
-    path: /usr/local/bin/sga-guard
-  register: sga_guard_bin
 - name: "Install SGA Guard"
+  when: sga_guard_bin.stat.exists == false
   become: yes
   script: bin/install-sga-guard
-  when: sga_guard_bin.stat.exists == false
 - name: "Use SGA Guard by default when SSH/Git"
+  when: sga_guard_bin.stat.exists == false
   lineinfile:
     path: ~/.bashrc
     line: source sga-env.sh
