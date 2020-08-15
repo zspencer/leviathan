@@ -11,6 +11,7 @@
     tasks:
     - include: maintenance/upgrade.yml
     - include: maintenance/ssh-connectivity.yml
+    - include: maintenance/performance-monitoring.yml
     - include: development-environment/terminal.yml
     - include: development-environment/desktop.yml
     - include: docker/install-docker.yml
@@ -20,8 +21,6 @@
         name:
           - curl
           - python3-psutil
-          - htop
-          # Provides a remote desktop connection for workstation guests
           - make
           # https://serverfault.com/questions/214605/gpg-does-not-have-enough-entropy
           # Used for generating entropy when using gpg

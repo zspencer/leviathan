@@ -4,6 +4,7 @@
     tasks:
     - include: maintenance/upgrade.yml
     - include: maintenance/ssh-connectivity.yml
+    - include: maintenance/performance-monitoring.yml
     - include: development-environment/terminal.yml
     - include: push-launch-scripts.yml
     - include: docker/install-docker.yml

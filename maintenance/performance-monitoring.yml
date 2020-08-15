@@ -1,0 +1,13 @@
+---
+# Performance monitoring helps us keep an eye on how well the machine is operating.
+# At present, I am doing "drop-in" performance monitoring, though I can imagine
+# wanting to figure out how to set up a logging/utilization history aggregator.
+#
+# [htop] allows us to inspect running processes along with  their CPU and
+# memory usage.
+#
+# [htop]: https://manpages.debian.org/testing/htop/htop.1.en.html
+- name: "Install htop"
+  become: yes
+  package:
+    name: htop
