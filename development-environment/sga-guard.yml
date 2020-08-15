@@ -24,11 +24,3 @@
   when: sga_guard_bin.stat.exists == false
   become: yes
   script: bin/install-sga-guard
-
-- name: "Use SGA Guard by default when SSH/Git"
-  when: sga_guard_bin.stat.exists == false
-  lineinfile:
-    path: ~/.bashrc
-    line: source sga-env.sh
-    state: present
-
