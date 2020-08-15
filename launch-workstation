@@ -5,8 +5,9 @@
 
 
 set -eux
+
 NAME="zc"
-VNC=":0"
+
 for i in "$@"
 do
 case $i in
@@ -14,27 +15,16 @@ case $i in
     NAME="${i#*=}"
     shift
     ;;
-    --vnc=*)
-    VNC="${i#*=}"
-    shift
-    ;;
 esac
 done
 
 
 
+
 # Parameters.
 vmname="$NAME-workstation"
-os=ubuntu-20.04-desktop-amd64
 disk_img="disks/${vmname}.img.qcow2"
 disk_img_snapshot="disks/${vmname}.snapshot.qcow2"
-iso_name="${os}.iso"
-iso="disks/${iso_name}"
-
-# Download the installation media
-if [ ! -f "$iso" ]; then
-  wget "http://releases.ubuntu.com/focal/${iso_name}" -P "disks"
-fi
 
 # Provision a disk
 if [ ! -f "$disk_img" ]; then
@@ -49,6 +39,5 @@ qemu-system-x86_64 \
   -drive "file=${disk_img},format=qcow2" \
   -enable-kvm \
   -m 16G \
-  -nic tap \
+  -nic user,hostfwd=tcp::5555-:22 \
   -vnc :2 \
-  # -cdrom $iso \
