@@ -3,7 +3,7 @@
   - hosts: workstation_hosts
     tasks:
     - include: maintenance/upgrade.yml
-    - include: install-sga-guard.yml
+    - include: maintenance/ssh-connectivity.yml
     - include: push-launch-scripts.yml
     - include: configure-git.yml
     - include: docker/install-docker.yml

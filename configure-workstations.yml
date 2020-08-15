@@ -10,17 +10,13 @@
 
     tasks:
     - include: maintenance/upgrade.yml
+    - include: maintenance/ssh-connectivity.yml
     - include: configure-git.yml
     - include: docker/install-docker.yml
-    - include: install-sga-guard.yml
     - name: "install common packages"
       become: yes
       package:
         name:
-          - openssh-server
-          - openssh-client
-          - autossh
-          - ssh-askpass
           - curl
           - python3-psutil
           - tmux
@@ -60,7 +56,6 @@
         rule: allow
         port: "{{ item }}"
       loop:
-        - "22"
         - "5900"
         - "3389"
 
