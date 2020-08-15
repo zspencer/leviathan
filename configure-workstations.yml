@@ -9,6 +9,8 @@
         switch-applications-backward: "['<Shift><Super><Alt>Tab']"
 
     tasks:
+    - include: configure-git.yml
+    - include: install-sga-guard.yml
     - name: "install common packages"
       become: yes
       package:
@@ -17,14 +19,12 @@
           - openssh-client
           - autossh
           - ssh-askpass
-          - vim
           - curl
           - python3-psutil
           - tmux
           - htop
           # Provides a remote desktop connection for workstation guests
           - xrdp
-          - git
           - make
           # https://serverfault.com/questions/214605/gpg-does-not-have-enough-entropy
           # Used for generating entropy when using gpg
@@ -62,7 +62,6 @@
         - "5900"
         - "3389"
 
-    - include: install-sga-guard.yml
     - name: "Install VS Code"
       become: yes
       snap:
