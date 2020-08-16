@@ -6,4 +6,4 @@
     - include: maintenance/remote-management.yml
     - include: maintenance/performance-monitoring.yml
     - include: development-environment/terminal.yml
-    - include: push-launch-scripts.yml
+    - include: virtualization/push-launch-scripts.yml
