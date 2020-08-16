@@ -5,3 +5,5 @@
 - include: tmux.yml
 - include: git.yml
 - include: sga-guard.yml
+- include: build-tools.yml
+

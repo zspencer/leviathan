@@ -1,0 +1,52 @@
+---
+# [asdf] is a programming language version manager. It's mostly used to
+# mitigate conflicts when one project requires an earlier version and another
+# project requires a new version of the same language.
+#
+# One key advantage to asdf is that it supports managing many different
+# languages, including the ones I'm most familiar with: ruby, node, clojure and
+# erlang.
+#
+# [asdf]: https://asdf-vm.com/
+
+
+- name: "Install the base asdf package"
+  git:
+    repo: https://github.com/asdf-vm/asdf.git
+    dest: ~/.asdf
+    version: v0.8.0-rc1
+
+# Once asdf is installed, we also add it to our shell so that it sits in
+# between us and ruby/node/python/etc.
+- name: "include asdf in the bash profile"
+  lineinfile:
+    line: . $HOME/.asdf/asdf.sh
+    path: ~/.bashrc
+
+# asdf's tab completion are optional, so we add them as well
+- name: "include asdfs bash completions"
+  lineinfile:
+    line: . $HOME/.asdf/completions/asdf.bash
+    path: ~/.bashrc
+
+
+- name: "Install asdf-{{ item }}"
+  shell: |
+    . $HOME/.asdf/asdf.sh
+    asdf plugin add {{ item }}
+  args:
+    executable: /bin/bash
+    creates: ~/.asdf/plugins/{{ item }}/
+  loop:
+  - "clojure"
+  - "deno"
+  - "elixir"
+  - "erlang"
+  - "golang"
+  - "nodejs"
+  - "python"
+  - "ruby"
+  - "rust"
+
+- name: "Add the nodejs OpenPGP Keys to the Keyring"
+  shell: "${ASDF_DATA_DIR:=$HOME/.asdf}/plugins/nodejs/bin/import-release-team-keyring"

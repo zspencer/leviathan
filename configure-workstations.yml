@@ -14,17 +14,6 @@
     - include: maintenance/performance-monitoring.yml
     - include: development-environment/terminal.yml
     - include: development-environment/desktop.yml
-    - include: docker/install-docker.yml
-    - name: "install common packages"
-      become: yes
-      package:
-        name:
-          - curl
-          - make
-          # https://serverfault.com/questions/214605/gpg-does-not-have-enough-entropy
-          # Used for generating entropy when using gpg
-          # $ sudo rngd -r /dev/urandom
-          - rng-tools
 
     - name: Set my users authorized keys from Github
       authorized_key:
@@ -40,21 +29,6 @@
         value: "{{ item.value | string }}"
         state: present
       when: item.value != ""
-    - name: "Ensure xrdp can access the ssh key"
-      become: yes
-      user:
-        name: xrdp
-        append: yes
-        groups:
-          - 'ssl-cert'
-    - name: "Allow RDP, SSH and VNC"
-      become: yes
-      ufw:
-        rule: allow
-        port: "{{ item }}"
-      loop:
-        - "5900"
-        - "3389"
 
     - name: "Install VS Code"
       become: yes

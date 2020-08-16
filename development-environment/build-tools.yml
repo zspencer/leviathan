@@ -1,0 +1,40 @@
+---
+# Build tools are used to turn source code into functioning programs.
+#
+# Most of the packages listed here are required to build ruby, python or node.
+# See:
+# - https://linuxize.com/post/how-to-install-ruby-on-ubuntu-20-04/
+
+- name: "Install key build packages"
+  become: yes
+  package:
+    name:
+      - autoconf
+      - bison
+      - build-essential
+      - curl
+      - git
+      - libbz2-dev
+      - libdb-dev
+      - libffi-dev
+      - libgdbm-dev
+      - libgdbm6
+      - libncurses5-dev
+      - libreadline6-dev
+      - libsqlite3-dev
+      - libssl-dev
+      - libyaml-dev
+      - manpages-dev
+      - zlib1g-dev
+      # For confirming authenticity of downloads through cryptographic means.
+      - gpg
+      # https://serverfault.com/questions/214605/gpg-does-not-have-enough-entropy
+      # Used for generating entropy when using gpg
+      # $ sudo rngd -r /dev/urandom
+      - rng-tools
+
+# Docker manages per-application services like databases, event busses, caches, etc.
+- include: docker/install.yml
+# asdf manages per-application programming languages, like ruby, python, go,
+# rust, node, erlang, deno, etc.
+- include: asdf.yml
