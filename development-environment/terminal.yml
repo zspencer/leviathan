@@ -1,6 +1,7 @@
 ---
-- include: git.yml
 - include: build-tools.yml
-- include: tmux.yml
+- include: git.yml
+- include: postgres.yml
 - include: sga-guard.yml
+- include: tmux.yml
 

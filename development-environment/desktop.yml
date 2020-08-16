@@ -1,9 +1,10 @@
 ---
 # The desktop development environment provides a full-blown window manager,
 # remote desktop access, as well as the standard development tools.
-- include: remote-desktop.yml
-- include: tmux.yml
-- include: git.yml
-- include: sga-guard.yml
 - include: build-tools.yml
+- include: git.yml
+- include: postgres.yml
+- include: remote-desktop.yml
+- include: sga-guard.yml
+- include: tmux.yml
 

@@ -1,0 +1,8 @@
+---
+# I often use postgresql as a database backend, but I don't really want to 
+- name: "Install postgresql development and client packages"
+  become: yes
+  package:
+    name:
+    - postgresql-client-common
+    - libpq-dev
