@@ -3,6 +3,6 @@ leviathan.local
 
 [workstation_guests]
 leviathan.guest.local:5555
+zee.xen.prgmr.com
 
-[bridge]
-prime.zeespencer.com
+
