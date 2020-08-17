@@ -3,12 +3,3 @@
 
 # The founation of (almost) all remote management!
 - include: ssh-connectivity.yml
-
-# python3-psutil is used by some ansible modules to check on running processes.
-#
-# TODO: Build a clean workstation to figure out what exact modules are using
-# this at the moment.
-- name: "Install python3-psutil"
-  become: yes
-  package:
-    name: python3-psutil

@@ -1,6 +1,10 @@
 #!/bin/bash
 
-sudo apt update
-sudo apt install software-properties-common
-sudo apt-add-repository --yes --update ppa:ansible/ansible
-sudo apt install ansible
+# This assumes that the machine running this script has already had the
+# development environment playbook ran against it.
+asdf install python 3.8.5
+asdf global python 3.8.5
+pip install --user ansible
+pip install --user argcomplete
+pip install --user psutil
+
