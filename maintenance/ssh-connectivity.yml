@@ -30,3 +30,9 @@
     rule: allow
     port: "22"
 
+- name: Set users authorized keys from Github
+  authorized_key:
+    user: zee
+    state: present
+    exclusive: true
+    key: https://github.com/zspencer.keys

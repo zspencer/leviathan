@@ -7,4 +7,8 @@
 - include: remote-desktop.yml
 - include: sga-guard.yml
 - include: tmux.yml
-
+- name: "Install VS Code"
+  become: yes
+  snap:
+    name: "code"
+    classic: yes
