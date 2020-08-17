@@ -11,3 +11,14 @@
     scope: global
     value: vim
 
+- name: "configure me as author editor"
+  git_config:
+    name: user.name
+    scope: global
+    value: Zee@Zinc
+
+- name: "configure me as author editor"
+  git_config:
+    name: user.email
+    scope: global
+    value: 50284+zspencer@users.noreply.github.com
