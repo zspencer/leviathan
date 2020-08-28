@@ -1,8 +1,9 @@
 [workstation_hosts]
 leviathan.local
 
-[workstation_guests]
+[gui_workstations]
 leviathan.guest.local:5555
+
+[cli_workstations]
 zee.xen.prgmr.com
-
-
+leviathan.local

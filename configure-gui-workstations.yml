@@ -1,8 +1,7 @@
 ---
-  - hosts: workstation_guests
+  - hosts: gui_workstations
     tasks:
     - include: maintenance/upgrade.yml
     - include: maintenance/remote-management.yml
     - include: maintenance/performance-monitoring.yml
-    - include: development-environment/terminal.yml
     - include: development-environment/desktop.yml

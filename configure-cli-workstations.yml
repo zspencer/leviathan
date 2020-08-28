@@ -1,8 +1,8 @@
 
 ---
-  - hosts: workstation_hosts
+  - hosts: cli_workstations
     tasks:
     - include: maintenance/upgrade.yml
     - include: maintenance/remote-management.yml
     - include: maintenance/performance-monitoring.yml
-    - include: virtualization/push-launch-scripts.yml
+    - include: development-environment/terminal.yml
