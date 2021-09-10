@@ -4,4 +4,5 @@
 - include: postgres.yml
 - include: sga-guard.yml
 - include: tmux.yml
+- include: nvim.yml
 

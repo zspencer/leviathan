@@ -1,0 +1,10 @@
+---
+# [nvim] gives us a fancy-pants editor.
+#
+# [nvim]: https://neovim.io
+
+
+- name: "Install neovim"
+  become: yes
+  package:
+    name: tmux
