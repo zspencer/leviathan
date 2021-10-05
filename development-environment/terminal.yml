@@ -5,4 +5,5 @@
 - include: sga-guard.yml
 - include: tmux.yml
 - include: nvim.yml
+- include: tailscale.yml
 
